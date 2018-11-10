@@ -1,7 +1,9 @@
 <?php
 
-require (APPPATH.'/libraries/REST_Controller.php');
+require (APPPATH.'/libraries/REST_Controller.php'); 
 require (APPPATH.'/libraries/Format.php');
+require (APPPATH.'/libraries/rb-mysql.php');
+
 use Restserver\Libraries\REST_Controller;
 
 class Notes extends REST_Controller {
