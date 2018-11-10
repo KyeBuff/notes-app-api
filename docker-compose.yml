@@ -1,0 +1,42 @@
+version: '3'
+services:
+  php:
+    build: .
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html/
+    networks:
+      lamp_net:
+          ipv4_address: 172.28.1.1      
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      lamp_net:
+          ipv4_address: 172.28.1.2     
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+    networks:
+      lamp_net:
+          ipv4_address: 172.28.1.3
+networks:
+    lamp_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
