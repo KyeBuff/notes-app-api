@@ -15,6 +15,6 @@ class Notes extends REST_Controller {
 	public function index_get()
 	{
         // Returns a list of notes
-        $this->response($this->db->get('notes')->result());
+        // $this->response($this->db->get('notes')->result());
 	}
 }
