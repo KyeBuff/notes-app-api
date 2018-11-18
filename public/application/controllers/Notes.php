@@ -30,7 +30,10 @@ class Notes extends REST_Controller {
 	 */
 	public function index_post()
 	{
-		$note = Note::create('Test', 'Blah blah');
+		$title = $this->post('title');
+		$content = $this->post('content');
+
+		$note = Note::create($title, $content);
 
 		$this->response($note, 201);
     }
