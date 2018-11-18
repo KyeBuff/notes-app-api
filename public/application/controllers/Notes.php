@@ -18,11 +18,17 @@ class Notes extends REST_Controller {
 				'label' => 'content',
 				'rules' => 'required'
 		],
+		[
+			'field' => 'author_id',
+			'label' => 'author_id',
+			'rules' => 'required|numeric'
+		],
 	];
 
 	private $fillables = [
 		'title',
-		'content'
+		'content',
+		'author_id'
 	];
 
 	private function matchesFillables($data)
@@ -42,6 +48,7 @@ class Notes extends REST_Controller {
     public function __construct(){
 		parent::__construct();
 		$this->load->model('note');
+		$this->load->model('author');
 		$this->load->library('form_validation');
     }
 	/**
@@ -88,6 +95,13 @@ class Notes extends REST_Controller {
 
 		$note = Note::create($data);
 
+		//Set note to author
+		$author = Author::getAuthor($data['author_id']);
+
+		if ($author) {
+			Author::setNote($note, $data['author_id']);
+		}
+
 		$this->response($note, 201);
 		
     }
@@ -121,6 +135,22 @@ class Notes extends REST_Controller {
 			}
 			$this->response(null, 404);
 		}
+		$this->response(null, 404);
+	}
+	public function author_get() 
+	{
+		$author_id = $this->get('id');
+
+		if($author_id) {
+			$author = Author::getAuthor($author_id);
+
+			if($author) {
+				$notes = Author::getOwnNotes($author_id);
+				$this->response($notes, 200);
+			}
+			$this->response(null, 404);
+		}
+
 		$this->response(null, 404);
 	}
 }
