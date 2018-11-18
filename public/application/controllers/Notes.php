@@ -94,6 +94,13 @@ class Notes extends REST_Controller {
 	 */
 	public function index_put()
 	{
+		if($this->get('id')) {
+			$this->response([
+				'test' => 'test'
+			], 200);
+		} else {
+			$this->response(null, 404);
+		}
     }
     
     /**
