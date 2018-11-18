@@ -49,9 +49,12 @@ class Notes extends REST_Controller {
 	 */
 	public function index_get()
 	{
-		if($id = $this->get('id')) 
-		{
-			$this->get_by_id($id);
+		if($this->get()) {
+			$id = $this->get('id');
+			if($id) {
+				$this->get_by_id($id);
+			}
+			$this->response(null, 404);
 		}
 		$this->response(Note::get(), 200);
     }
