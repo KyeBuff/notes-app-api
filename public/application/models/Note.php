@@ -6,6 +6,16 @@ class Note extends CI_Model {
                 $this->load->library('rb');
         }
 
+        public static function get()
+        {
+            return R::findAll('notes');
+        }
+
+        public static function getOne($id)
+        {
+            return R::findOne('notes', 'id='.$id);
+        }
+
         public static function create($data) 
         {
                 $note = R::dispense('notes');
