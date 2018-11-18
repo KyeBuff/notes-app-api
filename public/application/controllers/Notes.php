@@ -19,6 +19,25 @@ class Notes extends REST_Controller {
 				'rules' => 'required'
 		],
 	];
+
+	private $fillables = [
+		'title',
+		'content'
+	];
+
+	private function matchesFillables($data)
+	{
+		$matches = true;
+
+		foreach ($data as $field => $value) {
+			if(!in_array($field, $this->fillables)) {
+				$matches = false;
+				break;
+			}
+		}
+
+		return $matches;
+	}
     
     public function __construct(){
 		parent::__construct();
@@ -46,17 +65,20 @@ class Notes extends REST_Controller {
 	{
 		$data = $this->post();
 
-		$data = $this->form_validation->set_data($data);
-		$this->form_validation->set_rules($this->rules);
+		if(!$this->matchesFillables($data)){
+			$this->response(['message' => 'Mass assignment error'], 422);
+		}
 
-		$note = Note::create($title, $content);
+		$this->form_validation->set_data($data);
+		$this->form_validation->set_rules($this->rules);
 
 		if(!$this->form_validation->run()){
 			$this->response($this->form_validation->error_array(), 422);
 		}
-		else{
-			$this->response($data, 201);
-		}
+
+		$note = Note::create($data);
+
+		$this->response($note, 201);
 		
     }
     

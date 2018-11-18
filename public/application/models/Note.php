@@ -6,12 +6,12 @@ class Note extends CI_Model {
                 $this->load->library('rb');
         }
 
-        public static function create($title, $content) 
+        public static function create($data) 
         {
                 $note = R::dispense('notes');
 
-                $note->title = $title;
-                $note->content = $content;
+                $note->title = $data['title'];
+                $note->content = $data['content'];
 
                 $note_id = R::store($note);
 
