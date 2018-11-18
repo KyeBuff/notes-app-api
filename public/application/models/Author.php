@@ -36,8 +36,7 @@ class Author extends CI_Model {
         {
             $author = Author::getAuthor($author);
 
-            return $author->ownNoteList;
-            
+            return $author->ownNotesList;
         }
 
 }
