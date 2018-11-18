@@ -51,7 +51,7 @@ class Notes extends REST_Controller {
 
 		$note = Note::create($title, $content);
 
-		if($this->form_validation->run()==FALSE){
+		if(!$this->form_validation->run()){
 			$this->response($this->form_validation->error_array(), 422);
 		}
 		else{
