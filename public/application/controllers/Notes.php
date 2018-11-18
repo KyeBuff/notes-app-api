@@ -9,7 +9,7 @@ class Notes extends REST_Controller {
     
     public function __construct(){
 		parent::__construct();
-		$this->load->library('rb');
+		$this->load->model('note');
     }
 	/**
 	 * Index all notes
@@ -30,6 +30,9 @@ class Notes extends REST_Controller {
 	 */
 	public function index_post()
 	{
+		$note = Note::create('Test', 'Blah blah');
+
+		$this->response($note, 201);
     }
     
     /**
