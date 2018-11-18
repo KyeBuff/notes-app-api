@@ -16,6 +16,12 @@ class Notes extends REST_Controller {
 	 */
 	public function index_get()
 	{
+		$post = R::dispense('post');
+		$post->text = 'Hello World';
+
+		$id = R::store($post);       //Create or Update
+		$post = R::load('post',$id); //Retrieve
+		R::trash($post); 
         // Returns a list of notes
         // $this->response($this->db->get('notes')->result());
     }
