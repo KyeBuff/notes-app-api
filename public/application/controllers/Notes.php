@@ -98,11 +98,14 @@ class Notes extends REST_Controller {
 	public function index_put()
 	{
 		if($id = $this->get('id')) {
-			$note = Note::update($this->put(), $id);
-			$this->response($note, 200);
-		} else {
+			$note = Note::getOne($id);
+			if($note) {
+				$note = Note::update($this->put(), $id);
+				$this->response($note, 200);
+			}
 			$this->response(null, 404);
 		}
+		$this->response(null, 404);
     }
     
     /**
@@ -110,5 +113,14 @@ class Notes extends REST_Controller {
 	 */
 	public function index_delete()
 	{
+		if($id = $this->get('id')) {
+			$note = Note::getOne($id);
+			if($note) {
+				Note::delete($id);
+				$this->response(null, 200);
+			}
+			$this->response(null, 404);
+		}
+		$this->response(null, 404);
 	}
 }

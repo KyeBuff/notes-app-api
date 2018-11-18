@@ -40,4 +40,10 @@ class Note extends CI_Model {
                 return Note::storeNote($data, $note);
         }
 
+        public static function delete($id) 
+        {
+                $note = R::findOne('notes', 'id='.$id);
+
+                return R::trash($note);
+        }
 }
