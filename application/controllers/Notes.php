@@ -8,20 +8,34 @@ use Restserver\Libraries\REST_Controller;
 class Notes extends REST_Controller {
 
 	private $rules = [
-		[
-				'field' => 'title',
-				'label' => 'title',
-				'rules' => 'required'
+		'new' => [
+			[
+					'field' => 'title',
+					'label' => 'title',
+					'rules' => 'required'
+			],
+			[
+					'field' => 'content',
+					'label' => 'content',
+					'rules' => 'required'
+			],
+			[
+				'field' => 'author_id',
+				'label' => 'author_id',
+				'rules' => 'required|numeric'
+			],
 		],
-		[
-				'field' => 'content',
-				'label' => 'content',
-				'rules' => 'required'
-		],
-		[
-			'field' => 'author_id',
-			'label' => 'author_id',
-			'rules' => 'required|numeric'
+		'update' => [
+			[
+					'field' => 'title',
+					'label' => 'title',
+					'rules' => 'required'
+			],
+			[
+					'field' => 'content',
+					'label' => 'content',
+					'rules' => 'required'
+			],
 		],
 	];
 
@@ -87,7 +101,7 @@ class Notes extends REST_Controller {
 		}
 
 		$this->form_validation->set_data($data);
-		$this->form_validation->set_rules($this->rules);
+		$this->form_validation->set_rules($this->rules['new']);
 
 		if(!$this->form_validation->run()){
 			$this->response($this->form_validation->error_array(), 422);
@@ -111,6 +125,20 @@ class Notes extends REST_Controller {
 	 */
 	public function index_put()
 	{
+
+		$data = $this->put();
+
+		if(!$this->matchesFillables($data)){
+			$this->response(['message' => 'Mass assignment error'], 422);
+		}
+	
+		$this->form_validation->set_data($data);
+		$this->form_validation->set_rules($this->rules['update']);
+
+		if(!$this->form_validation->run()){
+			$this->response($this->form_validation->error_array(), 422);
+		}
+		
 		if($id = $this->get('id')) {
 			$note = Note::getOne($id);
 			if($note) {
