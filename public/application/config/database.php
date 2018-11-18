@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.28.1.3',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'notes_api',
+	'database' => 'scotchbox',
 	'dbdriver' => 'mysql',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
