@@ -94,10 +94,9 @@ class Notes extends REST_Controller {
 	 */
 	public function index_put()
 	{
-		if($this->get('id')) {
-			$this->response([
-				'test' => 'test'
-			], 200);
+		if($id = $this->get('id')) {
+			$note = Note::update($this->put(), $id);
+			$this->response($note, 200);
 		} else {
 			$this->response(null, 404);
 		}

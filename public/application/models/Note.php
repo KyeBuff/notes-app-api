@@ -28,4 +28,16 @@ class Note extends CI_Model {
                 return $note;
         }
 
+        public static function update($data, $id) 
+        {
+                $note = R::findOne('notes', 'id='.$id);
+
+                $note->title = $data['title'];
+                $note->content = $data['content'];
+
+                $note_id = R::store($note);
+
+                return $note;
+        }
+
 }
