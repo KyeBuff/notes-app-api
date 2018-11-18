@@ -16,49 +16,33 @@ class Notes extends REST_Controller {
 	 */
 	public function index_get()
 	{
-		$post = R::dispense('post');
-		$post->text = 'Hello World';
-
-		$id = R::store($post);       //Create or Update
-		$post = R::load('post',$id); //Retrieve
-		R::trash($post); 
-        // Returns a list of notes
-        // $this->response($this->db->get('notes')->result());
     }
 
     /**
-	 * Index all notes
+	 * Fetch note by id
 	 */
 	public function index_id_get()
 	{
-        // Returns a list of notes
-        // $this->response($this->db->get('notes')->result());
     }
     
     /**
-	 * Index all notes
+	 * Create a note
 	 */
 	public function index_post()
 	{
-        // Returns a list of notes
-        // $this->response($this->db->get('notes')->result());
     }
     
     /**
-	 * Index all notes
+	 * Update a note
 	 */
 	public function index_put()
 	{
-        // Returns a list of notes
-        // $this->response($this->db->get('notes')->result());
     }
     
     /**
-	 * Index all notes
+	 * Delete a note
 	 */
 	public function index_delete()
 	{
-        // Returns a list of notes
-        // $this->response($this->db->get('notes')->result());
 	}
 }
