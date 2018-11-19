@@ -36,7 +36,7 @@ http://{baseURL}/notes/
 Retrieve a single note.
 
 ```
-http://notes-api.box/notes/q/id/{id}
+http://{baseURL}/notes/q/id/{id}
 ```
 
 #### Notes - GET notes for an Author
@@ -49,7 +49,7 @@ http://{baseURL}/notes/author/id/{id}
 Create a new note.
 
 ```
-http://notes-api.box/notes/
+http://{baseURL}/notes/
 ```
 
 ```
@@ -65,7 +65,7 @@ http://notes-api.box/notes/
 Update an existing note.
 
 ```
-http://notes-api.box/notes/q/id/{id}
+http://{baseURL}/notes/q/id/{id}
 ```
 
 ```
@@ -81,7 +81,7 @@ http://notes-api.box/notes/q/id/{id}
 Delete a single note.
 
 ```
-http://notes-api.box/notes/q/id/{id}
+http://{baseURL}/notes/q/id/{id}
 ```
 
 ### Authors
