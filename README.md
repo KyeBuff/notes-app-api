@@ -36,7 +36,7 @@ http://{baseURL}/notes/
 Retrieve a single note.
 
 ```
-http://{baseURL}/notes/q/id/{id}
+http://{baseURL}/notes/note/id/{id}
 ```
 
 #### Notes - GET notes for an Author
@@ -65,7 +65,7 @@ http://{baseURL}/notes/
 Update an existing note.
 
 ```
-http://{baseURL}/notes/q/id/{id}
+http://{baseURL}/notes/note/id/{id}
 ```
 
 ```
@@ -81,7 +81,7 @@ http://{baseURL}/notes/q/id/{id}
 Delete a single note.
 
 ```
-http://{baseURL}/notes/q/id/{id}
+http://{baseURL}/notes/note/id/{id}
 ```
 
 ### Authors
