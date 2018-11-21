@@ -123,7 +123,7 @@ class Notes extends REST_Controller {
     /**
 	 * Update a note
 	 */
-	public function index_put()
+	public function note_put()
 	{
 
 		$data = $this->put();
@@ -153,7 +153,7 @@ class Notes extends REST_Controller {
     /**
 	 * Delete a note
 	 */
-	public function index_delete()
+	public function note_delete()
 	{
 		if($id = $this->get('id')) {
 			$note = Note::getOne($id);
