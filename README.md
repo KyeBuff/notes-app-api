@@ -4,6 +4,8 @@ This API has been built to feed a Notes React app, where I will experiment with 
 
 Building this API has enabled me to better understand how other frameworks (besides Laravel) give you the tools to build REST APIs. 
 
+The idea is inspired by [this](https://medium.freecodecamp.org/every-time-you-build-a-to-do-list-app-a-puppy-dies-505b54637a5d#a6c7) FreeCodeCamp blog post.
+
 ## What have I learned?
 
 * How to integrate RedBean ORM (and other 3rd party libraries) with CodeIgniter 
@@ -16,3 +18,84 @@ Building this API has enabled me to better understand how other frameworks (besi
 
 * Separate validation code from controllers with validation class
 * Added date/time stamps to notes
+
+## API endpoints
+
+### Notes
+
+#### Notes - GET
+
+Retrieve all notes.
+
+```
+http://{baseURL}/notes/
+```
+
+#### Notes - GET a single note
+
+Retrieve a single note.
+
+```
+http://{baseURL}/notes/q/id/{id}
+```
+
+#### Notes - GET notes for an Author
+```
+http://{baseURL}/notes/author/id/{id}
+```
+
+#### Notes - POST
+
+Create a new note.
+
+```
+http://{baseURL}/notes/
+```
+
+```
+{
+	"title": "Noteworthy",
+	"content": "This is such a great note.",
+	"author_id": {id}
+}
+```
+
+#### Notes - PUT 
+
+Update an existing note.
+
+```
+http://{baseURL}/notes/q/id/{id}
+```
+
+```
+{
+	"title": "Noteworthy",
+	"content": "This is an even better note.",
+	"author_id": {id}
+}
+```
+
+#### Notes - DELETE
+
+Delete a single note.
+
+```
+http://{baseURL}/notes/q/id/{id}
+```
+
+### Authors
+
+#### Authors - POST
+
+Create an author.
+
+```
+http://{baseURL}/authors/
+```
+
+```
+{
+	"name": "Kye Buffery"
+}
+```
